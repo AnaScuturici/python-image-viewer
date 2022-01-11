@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import ImageTk, Image
+import tkinter.font as font
 
 root = Tk()
 root.title("Image viewer")
@@ -28,7 +29,12 @@ new_img = ImageTk.PhotoImage(resized)
 label = Label(root, image=new_img)
 label.pack(pady=20)
 
-exit_button = Button(root, text="Exit", command=root.quit)
+# Button
+
+button_font = font.Font(family="Helvetica", size=20, weight="bold")
+
+exit_button = Button(root, text="Exit", fg="#7580eb", command=root.quit)
+exit_button["font"] = button_font
 exit_button.pack()
 
 root.mainloop()
