@@ -35,12 +35,24 @@ image_list = [img1, img2, img3, img4, img5]
 label = Label(root, image=img1)
 label.grid(row=0, column=0, columnspan=3)
 
+back_button = Button(root, text="<<", command=lambda: back(3))
+exit_button = Button(root, text="Exit", command=root.quit)
+forward_button = Button(root, text=">>", command=lambda: forward(2))
+
+back_button.grid(row=1, column=0)
+exit_button.grid(row=1, column=1)
+forward_button.grid(row=1, column=2)
+
 def forward(img_num):
+    """
     global label
     global forward_button
     global back_button
+    """
 
+    label.configure(image=image_list[img_num + 1])
     #delete the currently displayed photo
+    """
     label.grid_forget()
     # recreate all widgets
     label = Label(image=image_list[img_num - 1])
@@ -54,13 +66,18 @@ def forward(img_num):
     label.grid(row=0, column=0, columnspan=3)
     back_button.grid(row=1, column=0)
     forward_button.grid(row=1, column=2)
-
+    """
 
 def back(img_num):
+    """
     global label
     global forward_button
     global back_button
+    """
 
+    label.configure(image=image_list[img_num - 1])
+
+    """
     label.grid_forget()
 
     label = Label(image=image_list[img_num + 1])
@@ -73,14 +90,7 @@ def back(img_num):
     label.grid(row=0, column=0, columnspan=3)
     back_button.grid(row=1, column=0)
     forward_button.grid(row=1, column=2)
+    """
 
-
-back_button = Button(root, text="<<", command=lambda: back(3))
-exit_button = Button(root, text="Exit", command=root.quit)
-forward_button = Button(root, text=">>", command=lambda: forward(2))
-
-back_button.grid(row=1, column=0)
-exit_button.grid(row=1, column=1)
-forward_button.grid(row=1, column=2)
 
 root.mainloop()
