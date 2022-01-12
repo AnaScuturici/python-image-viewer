@@ -45,12 +45,12 @@ def back():
     return
 
 
-#back_button = Button(root, text="<<", padx=20, pady=20, command=lambda: back())
-#exit_button = Button(root, text="Exit", padx=20, pady=20, command=root.quit)
+back_button = Button(root, text="<<", padx=20, pady=20, command=lambda: back())
+exit_button = Button(root, text="Exit", padx=20, pady=20, command=root.quit)
 forward_button = Button(root, text=">>", padx=20, pady=20, command=lambda: forward())
 
-#back_button.grid(row=1, column=0)
-#exit_button.grid(row=1, column=1)
+back_button.grid(row=1, column=0)
+exit_button.grid(row=1, column=1)
 forward_button.grid(row=1, column=2)
 
 root.mainloop()
