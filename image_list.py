@@ -5,9 +5,6 @@ import os
 root = Tk()
 root.title("Image viewer")
 
-label = Label(root)
-label.pack(pady=20)
-
 # function to resize photo
 def resize_img(img, new_width):
     width, height = img.size
@@ -25,29 +22,62 @@ for image in images:
     im_resized.save(image_path)
     
 # open resized-img, attach to label
-resized_images = [file for file in os.listdir("resized-img") if file.endswith(('JPG'))]
-resized_images = iter(resized_images)
+# resized_images = [file for file in os.listdir("resized-img") if file.endswith(('JPG'))]
 
-def forward():
-    try:
-        img = next(resized_images)
-    except StopIteration:
-        return
+img1 = ImageTk.PhotoImage(Image.open("resized-img/IMG_6689.JPG"))
+img2 = ImageTk.PhotoImage(Image.open("resized-img/IMG_6694.JPG"))
+img3 = ImageTk.PhotoImage(Image.open("resized-img/IMG_6721.JPG"))
+img4 = ImageTk.PhotoImage(Image.open("resized-img/IMG_6870.JPG"))
+img5 = ImageTk.PhotoImage(Image.open("resized-img/IMG_6887.JPG"))
 
-    img = Image.open(img)
-    img = ImageTk.PhotoImage(img)
-    label.img = img
-    label["image"] = img
+image_list = [img1, img2, img3, img4, img5]
 
-forward()
+label = Label(root, image=img1)
+label.grid(row=0, column=0, columnspan=3)
 
-def back():
-    return
+def forward(img_num):
+    global label
+    global forward_button
+    global back_button
+
+    #delete the currently displayed photo
+    label.grid_forget()
+    # recreate all widgets
+    label = Label(image=image_list[img_num - 1])
+    forward_button = Button(root, text=">>", command=lambda: forward_button(img_num + 1))
+    back_button = Button(root, text="<<", command=lambda: back_button(img_num - 1))
+    
+    # stop after last photo
+    if img_num == 5:
+        forward_button = Button(root, text=">>", state=DISABLED)
+
+    label.grid(row=0, column=0, columnspan=3)
+    back_button.grid(row=1, column=0)
+    forward_button.grid(row=1, column=2)
 
 
-back_button = Button(root, text="<<", padx=20, pady=20, command=lambda: back())
-exit_button = Button(root, text="Exit", padx=20, pady=20, command=root.quit)
-forward_button = Button(root, text=">>", padx=20, pady=20, command=lambda: forward())
+def back(img_num):
+    global label
+    global forward_button
+    global back_button
+
+    label.grid_forget()
+
+    label = Label(image=image_list[img_num + 1])
+    forward_button = Button(root, text=">>", command=lambda: forward_button(img_num + 1))
+    back_button = Button(root, text="<<", command=lambda: back_button(img_num - 1))
+
+    if img_num == 1:
+        back_button = Button(root, text="<<", state=DISABLED)
+
+    label.grid(row=0, column=0, columnspan=3)
+    back_button.grid(row=1, column=0)
+    forward_button.grid(row=1, column=2)
+
+
+back_button = Button(root, text="<<", command=lambda: back(3))
+exit_button = Button(root, text="Exit", command=root.quit)
+forward_button = Button(root, text=">>", command=lambda: forward(2))
 
 back_button.grid(row=1, column=0)
 exit_button.grid(row=1, column=1)
