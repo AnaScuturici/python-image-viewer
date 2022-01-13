@@ -5,12 +5,13 @@ from itertools import cycle
 
 root = Tk()
 root.title("Slideshow1")
+root.geometry("500x500")
     
 images = [file for file in os.listdir("resized-img") if file.endswith(('JPG'))]
 open_img = cycle(ImageTk.PhotoImage(Image.open("resized-img/"+img)) for img in images)
 
 label = Label(root)
-label.grid(row=0, column=0, columnspan=3)
+label.pack(pady=20)
         
 def forward():
     img = next(open_img)
@@ -21,6 +22,6 @@ def forward():
 forward()
 
 exit_button = Button(root, text="Exit", command=root.quit)
-exit_button.grid(row=1, column=1)
+exit_button.pack()
 
 root.mainloop()
