@@ -9,7 +9,7 @@ resized_images = iter([file for file in os.listdir("resized-img") if file.endswi
 
 label = Label(root)
 label.grid(row=0, column=0, columnspan=3)
-
+        
 def forward():
     try:
         img = next(resized_images)
@@ -21,7 +21,20 @@ def forward():
     img = ImageTk.PhotoImage(Image.open("resized-img/"+img))
     label.configure(image=img)
     label.image = img
-        
+
+# doesn't work 
+def back():
+    try:
+        img = next(resized_images)
+    except StopIteration:
+        back_button["state"]=DISABLED
+        forward_button["state"]=NORMAL
+        return
+
+    img = ImageTk.PhotoImage(Image.open("resized-img/"+img))
+    label.configure(image=img)
+    label.image = img
+
 forward()
 
 back_button = Button(root, text="<<", command=back, state=DISABLED)
