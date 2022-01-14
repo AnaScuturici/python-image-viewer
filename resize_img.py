@@ -1,9 +1,8 @@
 from tkinter import *
-from PIL import ImageTk, Image
+from PIL import Image
 import os
 
 root = Tk()
-root.title("Image viewer")
 
 # function to resize photo
 def resize_img(img, new_width):

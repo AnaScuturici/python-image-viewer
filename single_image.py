@@ -3,19 +3,13 @@ from PIL import ImageTk, Image
 import tkinter.font as font
 
 root = Tk()
-root.title("Image viewer")
+root.title("Single image")
 root.geometry("800x500")
 
 # Open img
 img = Image.open("img/IMG_6694.JPG")
 
 # Resize img
-
-"""
-print(img)  
-<PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=768x1024 at 0x10DF1D450>
-"""
-
 def resize_img(img, new_width):
     width, height = img.size
     ratio = height / width
@@ -30,7 +24,6 @@ label = Label(root, image=new_img)
 label.pack(pady=20)
 
 # Button
-
 button_font = font.Font(family="Helvetica", size=20, weight="bold")
 exit_button = Button(root, text="Exit", fg="#7580eb", command=root.quit)
 exit_button["font"] = button_font
