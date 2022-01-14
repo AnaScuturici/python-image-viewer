@@ -11,7 +11,7 @@ It includes three ways to render images in a GUI:
 
 There are 2 folders containing the photos used: `img` for the original photos, and `resized-img` where the resized photos are saved using the function in `resize_img.py`.
 
-The implementation was inspired by the Codemy.com [tutorial](https://www.youtube.com/watch?v=zg4c92pNFeo&t=981s&ab_channel=Codemy.com) (code included in `image_list1_tutorial`).
+The implementation was inspired by the Codemy.com [tutorial](https://www.youtube.com/watch?v=zg4c92pNFeo&t=981s&ab_channel=Codemy.com) (code included in `image_list1_tutorial.py`).
 
 
 
