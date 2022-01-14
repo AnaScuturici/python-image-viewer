@@ -4,7 +4,7 @@ import os
 from itertools import cycle
 
 root = Tk()
-root.title("Slideshow1")
+root.title("Slideshow")
 root.geometry("500x500")
     
 images = [file for file in os.listdir("resized-img") if file.endswith(('JPG'))]
