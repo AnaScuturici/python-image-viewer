@@ -5,12 +5,12 @@ import os
 root = Tk()
 root.title("Image viewer")
     
-resized_images = [file for file in os.listdir("resized-img") if file.endswith(('JPG'))]
+images = [file for file in os.listdir("resized-img") if file.endswith(('JPG'))]
 
 label = Label(root)
 label.grid(row=0, column=0, columnspan=3)
 
-# iterable object 
+# create an iterable list
 class cycle:
     def __init__(self, c):
         self._c = c
@@ -28,7 +28,7 @@ class cycle:
             self._index = len(self._c)-1
         return self._c[self._index]
         
-images = cycle(resized_images)
+images = cycle(images)
 
 def forward():
     img = next(images)
